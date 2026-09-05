@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-Aegis-GRPO dùng Group Relative Policy Optimization (GRPO) để huấn luyện model attribution của [AEGIS](<../raw/Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) bằng reward phân cấp, thay vì chỉ bắt chước target JSON như [Aegis-SFT](<Aegis-SFT.md>).
+Aegis-GRPO dùng Group Relative Policy Optimization (GRPO) để huấn luyện model attribution của [AEGIS](<Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) bằng reward phân cấp, thay vì chỉ bắt chước target JSON như [Aegis-SFT](<Aegis-SFT.md>).
 
 **Đầu vào.** Prompt chứa task, failed trajectory, và taxonomy error mode. Trong huấn luyện, reward còn nhận gold attribution map để đối chiếu; ở suy luận, model chỉ nhận prompt/trajectory và taxonomy.
 

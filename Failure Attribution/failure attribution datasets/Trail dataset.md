@@ -2,7 +2,7 @@
 
 ## 1.1. Bối cảnh và khoảng trống
 
-Việc đánh giá hệ agentic để tìm nơi cần cải thiện, cũng như phần chẩn đoán thủ công từ log, đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). TRAIL đặt trọng tâm khác: cần **quan sát và đánh giá chính bản ghi thực thi** của workflow agentic ở độ phân giải đủ nhỏ để hỗ trợ debug và tìm nguyên nhân gốc. Phạm vi của bài không chỉ là multi-agent mà gồm cả workflow single-agent và multi-agent.
+Việc đánh giá hệ agentic để tìm nơi cần cải thiện, cũng như phần chẩn đoán thủ công từ log, đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). TRAIL đặt trọng tâm khác: cần **quan sát và đánh giá chính bản ghi thực thi** của workflow agentic ở độ phân giải đủ nhỏ để hỗ trợ debug và tìm nguyên nhân gốc. Phạm vi của bài không chỉ là multi-agent mà gồm cả workflow single-agent và multi-agent.
 
 Theo tác giả, các benchmark agent hiện có chủ yếu đánh giá kết quả đầu-cuối; cách này không cho đủ khả năng quan sát tính không xác định và quá trình giải bài nhiều bước của agent. Việc đọc thủ công các trace dài, theo miền ứng dụng, vừa không mở rộng theo số lượng và độ phức tạp của lần chạy, vừa khó hơn debug phần mềm truyền thống vì trace đan xen suy luận của LLM với đầu ra từ công cụ bên ngoài.
 
@@ -16,7 +16,7 @@ Mục tiêu không phải chỉ kết luận workflow thành công hay thất b�
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Deshpande et al. (2025), *TRAIL: Trace Reasoning and Agentic Issue Localization*](<../raw/TRAIL Trace Reasoning and Agentic Issue Localization.md>)
+- [Deshpande et al. (2025), *TRAIL: Trace Reasoning and Agentic Issue Localization*](<TRAIL Trace Reasoning and Agentic Issue Localization.md>)
 
 # 2. Thiết kế dữ liệu TRAIL
 

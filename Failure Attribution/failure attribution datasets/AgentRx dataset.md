@@ -2,7 +2,7 @@
 
 ## 1.1. Khoảng trống chẩn đoán từ execution trajectory
 
-Bài báo thuộc bối cảnh failure attribution nhằm nối một lần đánh giá thất bại với nơi cần cải thiện trong hệ agentic, đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). Khoảng trống riêng mà [AgentRx](<../raw/AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>) nêu là các execution dài, xác suất, có thể nhiều agent, tool output nhiễu và side effect: failure có thể lan truyền trước khi bị quan sát. Do đó, chỉ biết outcome cuối không chỉ ra failure nào thực sự đã chặn task.
+Bài báo thuộc bối cảnh failure attribution nhằm nối một lần đánh giá thất bại với nơi cần cải thiện trong hệ agentic, đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). Khoảng trống riêng mà [AgentRx](<AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>) nêu là các execution dài, xác suất, có thể nhiều agent, tool output nhiễu và side effect: failure có thể lan truyền trước khi bị quan sát. Do đó, chỉ biết outcome cuối không chỉ ra failure nào thực sự đã chặn task.
 
 Tác giả phê bình các benchmark agent phổ biến chủ yếu đo terminal success, không có gold label cho failure attribution. Họ cũng đối chiếu với [Who&When](<Who&When dataset.md>): một lỗi được Who&When gán nhãn có thể đã được Orchestrator khắc phục, nên chưa phải nguyên nhân của outcome sai. Vì thế, khoảng trống không chỉ là tìm failure xuất hiện sớm nhất, mà là xác định **first unrecoverable failure** -- bước sai sớm nhất mà trajectory không hồi phục được.
 
@@ -10,17 +10,17 @@ Tác giả phê bình các benchmark agent phổ biến chủ yếu đo terminal
 
 Với failed execution trajectory gồm message, tool call, tool output và trạng thái môi trường quan sát được, nghiên cứu yêu cầu xác định critical step và category giải thích vì sao failure đó làm task không thể hoàn thành. Những failure event khác trong cùng log vẫn được giữ để thể hiện chain lỗi, nhưng không phải mọi event đều là root cause.
 
-Formulation của critical failure, cùng ranh giới của nó với decisive error trong Who&When và earliest inevitable step trong TraceElephant, được tách tại [Failure Attribution - Formulation](<../Failure Attribution - Formulation.md#5-critical-failure-attribution-trong-agentrx>).
+Formulation của critical failure, cùng ranh giới của nó với decisive error trong Who&When và earliest inevitable step trong TraceElephant, được tách tại [Failure Attribution - Formulation](<Failure Attribution - Formulation.md#5-critical-failure-attribution-trong-agentrx>).
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Barke et al. (2026), *AgentRx: Diagnosing AI Agent Failures from Execution Trajectories*](<../raw/AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>)
+- [Barke et al. (2026), *AgentRx: Diagnosing AI Agent Failures from Execution Trajectories*](<AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>)
 
 # 2. Dataset AgentRx
 
 ## 2.1. Đặc trưng cơ bản
 
-Mỗi instance là một **failed execution trajectory** có id, toàn bộ trace quan sát được, danh sách failure event và một critical failure. Mỗi failure event ghi step, mô tả ngắn, nhãn taxonomy và rationale; trace chứa message agent/người dùng, tool invocation, tool output và trạng thái môi trường mà hệ đã log được. Taxonomy nhãn là [AgentRx Failure Taxonomy](<../failure taxonomy/AgentRx Failure Taxonomy.md>) gồm chín loại.
+Mỗi instance là một **failed execution trajectory** có id, toàn bộ trace quan sát được, danh sách failure event và một critical failure. Mỗi failure event ghi step, mô tả ngắn, nhãn taxonomy và rationale; trace chứa message agent/người dùng, tool invocation, tool output và trạng thái môi trường mà hệ đã log được. Taxonomy nhãn là [AgentRx Failure Taxonomy](<AgentRx Failure Taxonomy.md>) gồm chín loại.
 
 Benchmark có **115 trajectory thất bại**; source không mô tả split train/validation/test:
 
@@ -54,15 +54,15 @@ Việc lấy trace failure tự nhiên từ ba setting khác nhau nhằm để n
 
 Grounded theory giúp tác giả không áp sẵn label set từ một architecture/miền, rồi kiểm tra taxonomy trên cả single-agent và multi-agent. Ghi tất cả failure trước khi chọn root cause cũng chủ ý tách deviation có thể recovery khỏi error thật sự quyết định outcome -- điểm mà tác giả cho là khác với nhãn [Who&When](<Who&When dataset.md>) ở một số case.
 
-Đánh đổi là annotation người tốn thời gian: trung bình 20 phút/trajectory \(\tau\)-bench, 22 phút Flash và 24 phút Magentic-One, tổng 42,7 giờ cho 115 trajectory. Chính chi phí này là lý do bài đề xuất framework [AgentRx](<../failure attribution methods/AgentRx.md>) để tự động hóa attribution. Tác giả cũng thừa nhận taxonomy rút từ ba miền có thể chưa bao quát mọi failure mode của miền agentic khác.
+Đánh đổi là annotation người tốn thời gian: trung bình 20 phút/trajectory \(\tau\)-bench, 22 phút Flash và 24 phút Magentic-One, tổng 42,7 giờ cho 115 trajectory. Chính chi phí này là lý do bài đề xuất framework [AgentRx](<AgentRx.md>) để tự động hóa attribution. Tác giả cũng thừa nhận taxonomy rút từ ba miền có thể chưa bao quát mọi failure mode của miền agentic khác.
 
 # 3. Phương pháp failure attribution được đề xuất
 
 ## 3.1. AgentRx
 
-AgentRx là framework chẩn đoán domain-agnostic, không phải model được fine-tune. Nó dùng tool schema, policy miền tùy chọn và nội dung trajectory để sinh constraint; những constraint bị vi phạm tạo validation log theo step có evidence. LLM judge dùng log này, toàn trajectory và [AgentRx Failure Taxonomy](<../failure taxonomy/AgentRx Failure Taxonomy.md>) để trả critical step cùng category.
+AgentRx là framework chẩn đoán domain-agnostic, không phải model được fine-tune. Nó dùng tool schema, policy miền tùy chọn và nội dung trajectory để sinh constraint; những constraint bị vi phạm tạo validation log theo step có evidence. LLM judge dùng log này, toàn trajectory và [AgentRx Failure Taxonomy](<AgentRx Failure Taxonomy.md>) để trả critical step cùng category.
 
-Cách thực thi, loại constraint và điều kiện dừng được tách tại [AgentRx](<../failure attribution methods/AgentRx.md>).
+Cách thực thi, loại constraint và điều kiện dừng được tách tại [AgentRx](<AgentRx.md>).
 
 # 4. Đánh giá và insight
 

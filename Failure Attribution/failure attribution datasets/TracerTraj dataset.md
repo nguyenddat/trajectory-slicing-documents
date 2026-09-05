@@ -2,19 +2,19 @@
 
 ## 1.1. Bối cảnh và khoảng trống
 
-Bối cảnh hệ LLM multi-agent dễ thất bại, cũng như nhu cầu nối kết quả đánh giá với thành phần cần cải thiện, đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). Với một trajectory dài bị thất bại, [Who&When](<../Failure Attribution - Formulation.md>) cho thấy các LLM reasoning mạnh vẫn rất yếu trong việc xác định đúng agent và bước đã gây lỗi quyết định. Theo tác giả, hai khoảng trống còn lại là: thiếu **dữ liệu gán nhãn đủ lớn** để huấn luyện failure tracer, và thiếu một tracer vừa chính xác vừa đủ nhẹ để chẩn đoán log multi-agent dài.
+Bối cảnh hệ LLM multi-agent dễ thất bại, cũng như nhu cầu nối kết quả đánh giá với thành phần cần cải thiện, đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). Với một trajectory dài bị thất bại, [Who&When](<Failure Attribution - Formulation.md>) cho thấy các LLM reasoning mạnh vẫn rất yếu trong việc xác định đúng agent và bước đã gây lỗi quyết định. Theo tác giả, hai khoảng trống còn lại là: thiếu **dữ liệu gán nhãn đủ lớn** để huấn luyện failure tracer, và thiếu một tracer vừa chính xác vừa đủ nhẹ để chẩn đoán log multi-agent dài.
 
 Các benchmark gán nhãn thủ công hiện có mà bài nêu — [MAST](<MAST dataset.md>) và Who&When — chỉ có lần lượt khoảng 200 và 127 failure trajectory theo cách tác giả tường thuật. Điều này không đủ cho việc huấn luyện hay đánh giá có hệ thống ở quy mô lớn. Bài không phê bình formulation của Who&When; thay vào đó, nó coi kết quả thấp của các LLM trên formulation này là bằng chứng rằng cần đồng thời mở rộng resource huấn luyện và xây một attributor chuyên biệt.
 
 ## 1.2. Formulation được kế thừa từ Who&When
 
-AgenTracer **kế thừa**, chứ không thay đổi, formulation automated failure attribution của [Who&When](<../Failure Attribution - Formulation.md#1-failure-attribution>). Hệ được xét theo lượt, với một agent hành động ở mỗi bước. Với trajectory thất bại \(\tau\), cần trả về cặp \((i^*,t^*)\): agent chịu trách nhiệm và **bước lỗi quyết định sớm nhất** — hành động mà nếu được sửa bằng hành động oracle rồi mô phỏng lại phần sau thì outcome chuyển từ failure sang success.
+AgenTracer **kế thừa**, chứ không thay đổi, formulation automated failure attribution của [Who&When](<Failure Attribution - Formulation.md#1-failure-attribution>). Hệ được xét theo lượt, với một agent hành động ở mỗi bước. Với trajectory thất bại \(\tau\), cần trả về cặp \((i^*,t^*)\): agent chịu trách nhiệm và **bước lỗi quyết định sớm nhất** — hành động mà nếu được sửa bằng hành động oracle rồi mô phỏng lại phần sau thì outcome chuyển từ failure sang success.
 
-Điểm cụ thể hóa của bài nằm ở **cách thực thi** rectification oracle để tạo nhãn: analyzer agent đề xuất một sửa đổi cục bộ, sau đó pipeline replay trajectory để kiểm tra outcome. Vì vậy, đầu ra vẫn là một nguyên nhân chính có định vị thời gian, không phải taxonomy error mode hay tập nhiều agent–error pairs như AEGIS. Formalization dùng chung được cập nhật tại [Failure Attribution - Formulation](<../Failure Attribution - Formulation.md#1-failure-attribution>).
+Điểm cụ thể hóa của bài nằm ở **cách thực thi** rectification oracle để tạo nhãn: analyzer agent đề xuất một sửa đổi cục bộ, sau đó pipeline replay trajectory để kiểm tra outcome. Vì vậy, đầu ra vẫn là một nguyên nhân chính có định vị thời gian, không phải taxonomy error mode hay tập nhiều agent–error pairs như AEGIS. Formalization dùng chung được cập nhật tại [Failure Attribution - Formulation](<Failure Attribution - Formulation.md#1-failure-attribution>).
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Zhang et al. (2025), *AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems?*](<../raw/AgenTracer Who Is Inducing Failure in the LLM Agentic Systems.md>)
+- [Zhang et al. (2025), *AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems?*](<AgenTracer Who Is Inducing Failure in the LLM Agentic Systems.md>)
 
 # 2. Thiết kế dữ liệu TracerTraj
 
@@ -60,7 +60,7 @@ Counterfactual replay khai thác failure đã xảy ra để nhãn không chỉ 
 
 ## 3.1. Thiết lập đánh giá
 
-Tác giả huấn luyện [AgenTracer-8B](<../failure attribution methods/AgenTracer-8B.md>) trên TracerTraj và đánh giá ở agent-level accuracy lẫn step-level accuracy. Ngoài test split theo ba miền của TracerTraj, họ dùng hai subset chưa thấy khi huấn luyện của [Who&When](<../Failure Attribution - Formulation.md>): handcrafted từ Magnetic-One và automated từ AG2. Mỗi attributor được xét cả khi có (*w/ G*) và không có (*w/o G*) ground-truth solution; khi infer, các model nhận toàn trajectory trong thiết lập all-at-once.
+Tác giả huấn luyện [AgenTracer-8B](<AgenTracer-8B.md>) trên TracerTraj và đánh giá ở agent-level accuracy lẫn step-level accuracy. Ngoài test split theo ba miền của TracerTraj, họ dùng hai subset chưa thấy khi huấn luyện của [Who&When](<Failure Attribution - Formulation.md>): handcrafted từ Magnetic-One và automated từ AG2. Mỗi attributor được xét cả khi có (*w/ G*) và không có (*w/o G*) ground-truth solution; khi infer, các model nhận toàn trajectory trong thiết lập all-at-once.
 
 Họ còn kiểm tra giá trị chẩn đoán trong vòng self-improvement: đưa trajectory thất bại (không có \(G\)) cho AgenTracer-8B, Self-Refine hoặc CRITIC để sinh feedback, inject feedback vào lần giải kế tiếp của MaAS, OWL-Workforce hoặc MetaGPT, và lặp tối đa ba vòng trên GAIA, HumanEval+ và MATH-500.
 

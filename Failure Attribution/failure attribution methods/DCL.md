@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-DCL là phương pháp contrastive do [AEGIS](<../raw/Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) đề xuất cho failure attribution trên [Aegis dataset](<Aegis dataset.md>). Nó xem failed trajectory là một bag of turns và học tách tín hiệu về agent khỏi tín hiệu về error mode.
+DCL là phương pháp contrastive do [AEGIS](<Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) đề xuất cho failure attribution trên [Aegis dataset](<Aegis dataset.md>). Nó xem failed trajectory là một bag of turns và học tách tín hiệu về agent khỏi tín hiệu về error mode.
 
 **Đầu vào.** Ở suy luận, DCL nhận toàn bộ failed trajectory, tách thành các turn. Khi train, nó còn nhận gold agent/mode labels, trajectory thành công tương ứng của cùng task, và hai prototype bank khởi tạo từ mô tả văn bản của agent và error mode.
 

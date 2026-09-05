@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-AgentRx là framework failure attribution trong [Barke et al. (2026), *AgentRx: Diagnosing AI Agent Failures from Execution Trajectories*](<../raw/AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>). Nó được đánh giá trên [AgentRx dataset](<AgentRx dataset.md>) và dùng [AgentRx Failure Taxonomy](<../failure taxonomy/AgentRx Failure Taxonomy.md>) làm không gian nhãn/checklist.
+AgentRx là framework failure attribution trong [Barke et al. (2026), *AgentRx: Diagnosing AI Agent Failures from Execution Trajectories*](<AgentRx Diagnosing AI Agent Failures from Execution Trajectories.md>). Nó được đánh giá trên [AgentRx dataset](<AgentRx dataset.md>) và dùng [AgentRx Failure Taxonomy](<AgentRx Failure Taxonomy.md>) làm không gian nhãn/checklist.
 
 **Đầu vào.** Toolset \(\mathcal{T}\) gồm tool/agent và schema input--output; domain policy \(\Pi\) tùy chọn; task instruction \(I\); và failed trajectory \(\mathcal{T}r=\langle s_1,\ldots,s_n\rangle\). Một step có thể có agent name, tool name, step index, tool output hoặc nội dung hội thoại. Framework còn nhận taxonomy checklist \(K\), trong đó mỗi category có các câu hỏi yes/no và tiêu chí ngắn.
 

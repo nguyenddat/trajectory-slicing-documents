@@ -2,7 +2,7 @@
 
 ## 1.1. Bối cảnh và khoảng trống
 
-Bối cảnh chung về việc phát triển hệ LLM multi-agent (MAS) và nhu cầu nối đánh giá với cải thiện đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). MAST nhấn mạnh một dấu hiệu cụ thể của khoảng trống này: dù MAS được kỳ vọng giúp phân rã tác vụ, chuyên môn hóa và phối hợp suy luận, mức tăng hiệu năng của chúng trên benchmark thường nhỏ so với single-agent hoặc cả baseline best-of-N. Do đó, điều cần hiểu không chỉ là hệ có điểm thấp, mà là **vì sao MAS thất bại**.
+Bối cảnh chung về việc phát triển hệ LLM multi-agent (MAS) và nhu cầu nối đánh giá với cải thiện đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). MAST nhấn mạnh một dấu hiệu cụ thể của khoảng trống này: dù MAS được kỳ vọng giúp phân rã tác vụ, chuyên môn hóa và phối hợp suy luận, mức tăng hiệu năng của chúng trên benchmark thường nhỏ so với single-agent hoặc cả baseline best-of-N. Do đó, điều cần hiểu không chỉ là hệ có điểm thấp, mà là **vì sao MAS thất bại**.
 
 Theo tác giả, việc trả lời câu hỏi này cần nhận diện và phân tích có hệ thống các mẫu thất bại lặp lại trong execution trace. Tuy nhiên, lỗi trong MAS không có nguyên nhân gốc rõ ràng như phần mềm truyền thống: chúng có thể là hiệu ứng chồng lấp của hành vi model riêng lẻ, tương tác giữa các agent và thiết kế tổng thể của hệ. Đồng thời, chưa có một framework chuẩn với định nghĩa thống nhất để nhận diện và gán nhãn lỗi giữa các hệ khác nhau; vì thế việc so sánh và phân tích xuyên hệ không nhất quán.
 
@@ -16,7 +16,7 @@ Ràng buộc quan trọng của bài toán là một trace có thể chứa nhi�
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Cemri et al. (2025), *Why Do Multi-Agent LLM Systems Fail?*](<../raw/Why Do Multi-Agent LLM Systems Fail.md>)
+- [Cemri et al. (2025), *Why Do Multi-Agent LLM Systems Fail?*](<Why Do Multi-Agent LLM Systems Fail.md>)
 
 # 2. Thiết kế dữ liệu MAST-Data
 

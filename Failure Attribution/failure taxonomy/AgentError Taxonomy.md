@@ -2,9 +2,9 @@
 
 ## 1.1. Phạm vi
 
-AgentErrorTaxonomy là taxonomy cho failure trong rollout của **single LLM agent** mà [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<../raw/Where LLM Agents Fail and How They can Learn From Failures.md>) đề xuất. Nó phân loại lỗi theo năm module của agent: memory, reflection, planning, action và system. Bốn nhóm đầu gắn với các output trong vòng lặp ra quyết định; nhóm system dành cho lỗi từ tool, hạ tầng hoặc giới hạn thực thi nằm ngoài suy luận của agent.
+AgentErrorTaxonomy là taxonomy cho failure trong rollout của **single LLM agent** mà [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<Where LLM Agents Fail and How They can Learn From Failures.md>) đề xuất. Nó phân loại lỗi theo năm module của agent: memory, reflection, planning, action và system. Bốn nhóm đầu gắn với các output trong vòng lặp ra quyết định; nhóm system dành cho lỗi từ tool, hạ tầng hoặc giới hạn thực thi nằm ngoài suy luận của agent.
 
-Taxonomy này là vocabulary để gán nhãn từng module/bước trong [AgentErrorBench](<AgentErrorBench dataset.md>) và để [AgentDebug](<../failure attribution methods/AgentDebug.md>) định vị lỗi critical. Nó không quy kết lỗi cho một agent trong hệ multi-agent.
+Taxonomy này là vocabulary để gán nhãn từng module/bước trong [AgentErrorBench](<AgentErrorBench dataset.md>) và để [AgentDebug](<AgentDebug.md>) định vị lỗi critical. Nó không quy kết lỗi cho một agent trong hệ multi-agent.
 
 ## 1.2. Các loại lỗi
 
@@ -42,4 +42,4 @@ Taxonomy này là vocabulary để gán nhãn từng module/bước trong [Agent
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<../raw/Where LLM Agents Fail and How They can Learn From Failures.md>)
+- [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<Where LLM Agents Fail and How They can Learn From Failures.md>)

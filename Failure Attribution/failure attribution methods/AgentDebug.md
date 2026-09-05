@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-AgentDebug là framework debug cho single LLM agent trong [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<../raw/Where LLM Agents Fail and How They can Learn From Failures.md>). Nó dùng [AgentErrorTaxonomy](<../failure taxonomy/AgentError Taxonomy.md>) để chẩn đoán failed trajectory của [AgentErrorBench](<AgentErrorBench dataset.md>), rồi re-rollout từ điểm lỗi với feedback có mục tiêu.
+AgentDebug là framework debug cho single LLM agent trong [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<Where LLM Agents Fail and How They can Learn From Failures.md>). Nó dùng [AgentErrorTaxonomy](<AgentError Taxonomy.md>) để chẩn đoán failed trajectory của [AgentErrorBench](<AgentErrorBench dataset.md>), rồi re-rollout từ điểm lỗi với feedback có mục tiêu.
 
 **Đầu vào.** Một trajectory \(\tau=\{(s_t,a_t)\}_{t=1}^{T}\), taxonomy \(E_{AET}\), tiêu chí critical error \(C_{crit}\), và ngân sách lặp \(I\). Ở triển khai prompt, ngữ cảnh còn gồm mô tả task, environment, các output memory/reflection/planning/action ở từng bước và phản hồi môi trường.
 

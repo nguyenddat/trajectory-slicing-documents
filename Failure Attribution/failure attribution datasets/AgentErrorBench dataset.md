@@ -2,7 +2,7 @@
 
 ## 1.1. Bối cảnh và khoảng trống
 
-Bối cảnh về nhu cầu dùng trace để nối đánh giá với cải thiện hệ agentic đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). Bài này xét **single LLM agent** có memory, reflection, planning và tool/action trên tác vụ nhiều bước. Điểm mới trong vấn đề mà tác giả nhấn mạnh là *error propagation*: một lỗi gốc sớm làm sai suy luận và hành động về sau, nên failure cuối không chỉ ra trực tiếp nơi cần sửa.
+Bối cảnh về nhu cầu dùng trace để nối đánh giá với cải thiện hệ agentic đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). Bài này xét **single LLM agent** có memory, reflection, planning và tool/action trên tác vụ nhiều bước. Điểm mới trong vấn đề mà tác giả nhấn mạnh là *error propagation*: một lỗi gốc sớm làm sai suy luận và hành động về sau, nên failure cuối không chỉ ra trực tiếp nơi cần sửa.
 
 Theo tác giả, các nghiên cứu failure trước chủ yếu liệt kê loại lỗi hoặc trình bày case study; chúng chưa có cơ chế hệ thống để truy dấu về root cause, càng chưa dùng chẩn đoán đó để agent tự phục hồi. Vì vậy, taxonomy mô tả failure, như [MAST](<MAST dataset.md>) trong phạm vi MAS, chưa tự trả lời lỗi nào trong một rollout là điểm cần can thiệp để đổi kết cục; bài này đặt mục tiêu diagnosis có thể hành động được cho trajectory single-agent.
 
@@ -10,17 +10,17 @@ Theo tác giả, các nghiên cứu failure trước chủ yếu liệt kê lo�
 
 Với một trajectory hoàn chỉnh \(\tau=\{(s_t,a_t)\}_{t=1}^{T}\) của agent, mô tả task và kết quả đánh giá thất bại, bài toán là tìm **critical error**: lỗi sớm nhất là nguyên nhân gốc khiến task không thể hoàn thành. Output chẩn đoán không phải một agent chịu trách nhiệm, mà gồm bước, module (memory/reflection/planning/action/system), error type, evidence, root cause, ảnh hưởng lan truyền và feedback sửa lỗi; agent được re-rollout từ bước đó để thử phục hồi.
 
-Về ngữ nghĩa, tiêu chí này gần với *decisive error* trong [Failure Attribution - Formulation](<../Failure Attribution - Formulation.md>): đều tìm lỗi sớm mà nếu được sửa thì failure có thể đổi thành success. Tuy nhiên, nguồn không nói AgentDebug kế thừa formulation Who&When, không xét MAS hay output `agent_id`. Điểm mới của formulation AgentDebug là gắn vị trí thời gian với **module + error taxonomy + feedback + re-rollout**, thay vì chỉ quy kết ai và khi nào; chi tiết đối chiếu được tách tại [Failure Attribution - Formulation](<../Failure Attribution - Formulation.md>). Bài không cho định nghĩa toán học riêng cho \(C_{crit}\), chỉ nêu tiêu chí này trong thuật toán và prompt.
+Về ngữ nghĩa, tiêu chí này gần với *decisive error* trong [Failure Attribution - Formulation](<Failure Attribution - Formulation.md>): đều tìm lỗi sớm mà nếu được sửa thì failure có thể đổi thành success. Tuy nhiên, nguồn không nói AgentDebug kế thừa formulation Who&When, không xét MAS hay output `agent_id`. Điểm mới của formulation AgentDebug là gắn vị trí thời gian với **module + error taxonomy + feedback + re-rollout**, thay vì chỉ quy kết ai và khi nào; chi tiết đối chiếu được tách tại [Failure Attribution - Formulation](<Failure Attribution - Formulation.md>). Bài không cho định nghĩa toán học riêng cho \(C_{crit}\), chỉ nêu tiêu chí này trong thuật toán và prompt.
 
 ## 1.3. Các artefact đề xuất
 
-- [AgentErrorTaxonomy](<../failure taxonomy/AgentError Taxonomy.md>): vocabulary gồm năm module lỗi.
+- [AgentErrorTaxonomy](<AgentError Taxonomy.md>): vocabulary gồm năm module lỗi.
 - **AgentErrorBench:** benchmark trace lỗi có nhãn theo taxonomy và root cause tối thiểu.
-- [AgentDebug](<../failure attribution methods/AgentDebug.md>): chẩn đoán lỗi critical rồi tạo feedback để re-rollout.
+- [AgentDebug](<AgentDebug.md>): chẩn đoán lỗi critical rồi tạo feedback để re-rollout.
 
 ## 1.4. Nghiên cứu nguồn
 
-- [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<../raw/Where LLM Agents Fail and How They can Learn From Failures.md>)
+- [Zhu et al. (2025), *Where LLM Agents Fail and How They can Learn From Failures*](<Where LLM Agents Fail and How They can Learn From Failures.md>)
 
 # 2. Thiết kế dữ liệu AgentErrorBench
 
@@ -30,7 +30,7 @@ Mỗi mẫu là một **failed trajectory** của single LLM agent trên ALFWorl
 
 ## 2.2. Nguồn dữ liệu mẫu và phương pháp sinh dữ liệu
 
-Tác giả bắt đầu bằng hơn 500 failed trajectory từ ALFWorld, WebShop và GAIA để các chuyên gia tìm các mẫu lỗi lặp lại và xây [AgentErrorTaxonomy](<../failure taxonomy/AgentError Taxonomy.md>). Sau đó họ curate 200 trajectory đại diện từ ba benchmark trên để tạo AgentErrorBench.
+Tác giả bắt đầu bằng hơn 500 failed trajectory từ ALFWorld, WebShop và GAIA để các chuyên gia tìm các mẫu lỗi lặp lại và xây [AgentErrorTaxonomy](<AgentError Taxonomy.md>). Sau đó họ curate 200 trajectory đại diện từ ba benchmark trên để tạo AgentErrorBench.
 
 Tài liệu nguồn không nêu model nền, prompt, số lần chạy, hay tiêu chí chọn 200 trajectory trong phần mô tả dataset; vì vậy không thể suy ra các cấu hình agent đã sinh trace hoặc mức độ đại diện ngoài phân bố 100/50/50. Đây là khác với phần downstream evaluation, nơi bài mới nêu backbone và số lần re-rollout.
 

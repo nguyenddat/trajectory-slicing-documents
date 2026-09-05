@@ -2,7 +2,7 @@
 
 ## 1.1. Khoảng trống developer-facing về khả năng quan sát
 
-Bài báo cùng nằm trong bối cảnh failure attribution của hệ LLM multi-agent và nhu cầu nối kết quả đánh giá với thành phần phải sửa, đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>). Khoảng trống riêng mà tác giả nhắm tới là **khả năng quan sát phù hợp với người phát triển**: người debug thường có task instruction, prompt, thông điệp trung gian, lời gọi tool và trạng thái môi trường; trong khi benchmark [Who&When](<Who&When dataset.md>) chỉ công bố output của agent trong trace, không có input/context dẫn tới output đó.
+Bài báo cùng nằm trong bối cảnh failure attribution của hệ LLM multi-agent và nhu cầu nối kết quả đánh giá với thành phần phải sửa, đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>). Khoảng trống riêng mà tác giả nhắm tới là **khả năng quan sát phù hợp với người phát triển**: người debug thường có task instruction, prompt, thông điệp trung gian, lời gọi tool và trạng thái môi trường; trong khi benchmark [Who&When](<Who&When dataset.md>) chỉ công bố output của agent trong trace, không có input/context dẫn tới output đó.
 
 Theo phân tích của tác giả trên 184 failure case của Who&When, ít nhất 21% trường hợp không thể quy kết đáng tin cậy chỉ từ output log. Vì vậy, vấn đề không đơn thuần là cần thêm một kỹ thuật dự đoán từ log black-box, mà là cần một benchmark cho kịch bản developer-facing, nơi nguyên nhân có thể nằm trong thông tin bị truyền mất, prompt theo role, cấu hình agent, hoặc tương tác tool/môi trường.
 
@@ -10,11 +10,11 @@ Theo phân tích của tác giả trên 184 failure case của Who&When, ít nh�
 
 TraceElephant xét một hệ gồm các **functional component** hoạt động theo lượt; component có thể là agent tường minh trong MAS, hoặc module planning, orchestration và tool use trong scaffold single-agent. Với một failed trace đầy đủ, đầu ra cần tìm vẫn là component chịu trách nhiệm và bước failure quyết định.
 
-Điểm mới của decisive error, gồm tiêu chí earliest failure-inevitable step và nguyên tắc role-aware/recoverability-aware, là khái niệm dùng chung để đối chiếu với Who&When. Phần formalization và ví dụ verifier được tách tại [Failure Attribution - Formulation](<../Failure Attribution - Formulation.md#4-failure-attribution-duoi-full-execution-observability-trong-traceelephant>), thay vì lặp lại trong note dataset.
+Điểm mới của decisive error, gồm tiêu chí earliest failure-inevitable step và nguyên tắc role-aware/recoverability-aware, là khái niệm dùng chung để đối chiếu với Who&When. Phần formalization và ví dụ verifier được tách tại [Failure Attribution - Formulation](<Failure Attribution - Formulation.md#4-failure-attribution-duoi-full-execution-observability-trong-traceelephant>), thay vì lặp lại trong note dataset.
 
 ## 1.3. Nghiên cứu nguồn
 
-- [Chen et al., *Seeing the Whole Elephant: A Benchmark for Failure Attribution in LLM-based Multi-Agent Systems*](<../raw/Seeing the Whole Elephant A Benchmark for Failure Attribution in LLM-based Multi-Agent Systems.md>)
+- [Chen et al., *Seeing the Whole Elephant: A Benchmark for Failure Attribution in LLM-based Multi-Agent Systems*](<Seeing the Whole Elephant A Benchmark for Failure Attribution in LLM-based Multi-Agent Systems.md>)
 
 # 2. Dataset TraceElephant
 
@@ -59,10 +59,10 @@ Full observability cũng có rủi ro lộ prompt, intermediate artifact, tool d
 
 ## 3.1. Không đề xuất một attribution model độc lập mới
 
-Đóng góp trung tâm của bài là benchmark và so sánh cấu hình, không phải một model failure attribution được huấn luyện mới. Bài dùng lại ba prompt-based technique — [All-at-once](<../failure attribution methods/All-at-once.md>), [Binary Search](<../failure attribution methods/Binary-search.md>) và [Step-by-step](<../failure attribution methods/Step-by-step.md>) — rồi xây hai cấu hình agentic để khai thác TraceElephant:
+Đóng góp trung tâm của bài là benchmark và so sánh cấu hình, không phải một model failure attribution được huấn luyện mới. Bài dùng lại ba prompt-based technique — [All-at-once](<All-at-once.md>), [Binary Search](<Binary-search.md>) và [Step-by-step](<Step-by-step.md>) — rồi xây hai cấu hình agentic để khai thác TraceElephant:
 
-- [Static Agentic](<../failure attribution methods/Static Agentic.md>) điều hướng giữa trace tổng quát và field I/O của step bằng mini-SWE-agent.
-- [Dynamic Agentic](<../failure attribution methods/Dynamic Agentic.md>) lấy hypothesis từ Static Agentic, replay từ candidate step và can thiệp input để kiểm tra phản thực trong một cửa sổ ngắn.
+- [Static Agentic](<Static Agentic.md>) điều hướng giữa trace tổng quát và field I/O của step bằng mini-SWE-agent.
+- [Dynamic Agentic](<Dynamic Agentic.md>) lấy hypothesis từ Static Agentic, replay từ candidate step và can thiệp input để kiểm tra phản thực trong một cửa sổ ngắn.
 
 Hai cấu hình này trả lời cùng output agent/component–step của formulation. Dynamic Agentic xác nhận trách nhiệm **cục bộ**; nó không được định nghĩa là sửa toàn task hay chứng minh candidate là nguyên nhân nhân quả đủ cho failure toàn cục.
 

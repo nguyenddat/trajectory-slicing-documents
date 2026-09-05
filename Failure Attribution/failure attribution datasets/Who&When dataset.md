@@ -2,7 +2,7 @@
 
 ## 1.1. Bối cảnh và khoảng trống
 
-Bài báo nằm trong bối cảnh phát triển hệ LLM multi-agent, nơi kết quả đánh giá cần được nối với việc xác định thành phần phải cải thiện. Bối cảnh chung về vòng lặp đánh giá–cải thiện và giới hạn của benchmark/LLM-as-a-judge đã được trình bày tại [Bối cảnh chung](<../Bối cảnh chung.md>).
+Bài báo nằm trong bối cảnh phát triển hệ LLM multi-agent, nơi kết quả đánh giá cần được nối với việc xác định thành phần phải cải thiện. Bối cảnh chung về vòng lặp đánh giá–cải thiện và giới hạn của benchmark/LLM-as-a-judge đã được trình bày tại [Bối cảnh chung](<Bối cảnh chung.md>).
 
 Khoảng trống mà nghiên cứu này tập trung là: sau khi một hệ multi-agent thất bại trên một kịch bản đánh giá, việc chuyển từ kết quả thất bại sang kết luận **thành phần nào trực tiếp gây ra thất bại** vẫn chủ yếu do con người làm. Các benchmark chi tiết hơn chỉ bổ sung metric để tham chiếu; chúng không tự động ánh xạ kết quả benchmark tới thành phần cần cải thiện. Do đó, câu hỏi mà bài báo nêu ra là: **thành phần nào của hệ agentic cần được cải thiện?**
 

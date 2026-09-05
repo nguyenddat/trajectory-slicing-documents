@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-AgenTracer-8B là failure attributor được huấn luyện trên [TracerTraj](<TracerTraj dataset.md>) bởi nghiên cứu [AgenTracer](<../raw/AgenTracer Who Is Inducing Failure in the LLM Agentic Systems.md>). Nó không phải pipeline tạo nhãn AgenTracer; nhiệm vụ của model là dự đoán decisive error pair \((i^*,t^*)\) trên một failure trajectory mới.
+AgenTracer-8B là failure attributor được huấn luyện trên [TracerTraj](<TracerTraj dataset.md>) bởi nghiên cứu [AgenTracer](<AgenTracer Who Is Inducing Failure in the LLM Agentic Systems.md>). Nó không phải pipeline tạo nhãn AgenTracer; nhiệm vụ của model là dự đoán decisive error pair \((i^*,t^*)\) trên một failure trajectory mới.
 
 **Đầu vào.** Ở suy luận, model nhận toàn bộ failed trajectory/log và environmental feedback đi kèm. Trong setting *w/ G* của bài, nó còn được cung cấp ground-truth solution; setting *w/o G* không có thông tin này. Khi huấn luyện, mỗi trajectory còn có gold pair agent–step từ TracerTraj.
 

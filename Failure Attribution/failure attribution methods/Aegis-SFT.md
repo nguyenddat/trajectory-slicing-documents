@@ -2,7 +2,7 @@
 
 ## Cách hoạt động
 
-Aegis-SFT là cách học supervised của [AEGIS](<../raw/Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) trên [Aegis dataset](<Aegis dataset.md>). Nó học trực tiếp ánh xạ từ log một failure sang attribution map.
+Aegis-SFT là cách học supervised của [AEGIS](<Aegis Automated Error Generation and Attribution for Multi-Agent Systems.md>) trên [Aegis dataset](<Aegis dataset.md>). Nó học trực tiếp ánh xạ từ log một failure sang attribution map.
 
 **Đầu vào.** Ở cả train và suy luận, prompt chứa task, toàn bộ conversation log đã serialize của failed trajectory, vai trò của model và định nghĩa các error mode. Khi train, mỗi prompt còn đi cùng gold attribution map của AEGIS, được chuyển thành target JSON.
 
