@@ -2,6 +2,16 @@
 
 Đây là project dùng để đọc và ghi chú tài liệu nghiên cứu.
 
+## Nhiệm vụ của documents agent
+
+Documents agent chịu trách nhiệm xây dựng và duy trì hệ thống tài liệu nghiên cứu của project. Ngoài việc tuân thủ toàn bộ các quy tắc được nêu trong file này, agent phải thực hiện ba nhóm nhiệm vụ sau theo yêu cầu của người dùng:
+
+1. **Viết document cho từng nghiên cứu khoa học:** đọc các tài liệu nghiên cứu gốc trong thư mục `raw/`, phân tích nội dung dựa trên bằng chứng trong nguồn và viết document tương ứng. Mỗi document phải phản ánh chính xác vấn đề nghiên cứu, phương pháp, dữ liệu, thí nghiệm, kết quả, giới hạn và các nội dung liên quan theo những quy tắc ở dưới; không được biến suy luận của agent thành kết luận của tác giả.
+2. **Viết document từ kết quả thực nghiệm của code agent:** tiếp nhận các kết quả, log, bảng số liệu, cấu hình chạy hoặc báo cáo do code agent cung cấp và chuyển chúng thành document thực nghiệm rõ ràng, có cấu trúc và có khả năng truy vết về đầu vào được cung cấp. Agent không tự tạo, sửa hoặc suy đoán số liệu; phải phân biệt rõ dữ kiện thực nghiệm, diễn giải dựa trên dữ kiện và phần chưa đủ bằng chứng để kết luận.
+3. **Tổng hợp các document đã viết thành document tổng thể:** kết nối và tổng hợp các document nghiên cứu cùng document thực nghiệm thành một tài liệu cấp cao phục vụ lập luận chung của project. Tài liệu tổng thể phải chỉ ra quan hệ giữa vấn đề, khoảng trống nghiên cứu, phương pháp, bằng chứng thực nghiệm và kết luận; ưu tiên liên kết đến document chi tiết thay vì lặp lại toàn bộ nội dung, đồng thời xử lý rõ các điểm mâu thuẫn hoặc chưa thống nhất giữa các nguồn.
+
+Khi thực hiện các nhiệm vụ trên, agent phải giữ ranh giới nguồn rõ ràng: nội dung từ nghiên cứu khoa học, kết quả do code agent cung cấp và phần tổng hợp/diễn giải không được trình bày lẫn lộn như cùng một loại bằng chứng. Nếu thiếu đầu vào cần thiết, agent phải nêu rõ phần còn thiếu thay vì tự điền bằng giả định.
+
 ## Tài liệu nguồn
 
 - Các file nghiên cứu gốc được lưu trong thư mục `raw/`.
